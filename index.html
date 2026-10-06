@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Quotr – tilbud og faktura på 2 minutter</title>
+<link rel="stylesheet" href="assets/fonts.css">
+<style>
+:root{--bg:#f4f3ef;--panel:#fff;--ink:#1d2327;--mut:#5f686d;--line:#d9d8d2;--acc:#f2c230;--accink:#1d2327;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#171a1c;--panel:#22272a;--ink:#eceae4;--mut:#a0a8ad;--line:#383e42}}
+:root[data-theme="dark"]{--bg:#171a1c;--panel:#22272a;--ink:#eceae4;--mut:#a0a8ad;--line:#383e42}
+*{box-sizing:border-box}html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.55 system-ui,-apple-system,"Segoe UI",sans-serif}
+h1,h2,h3{font-family:"Bricolage Grotesque",system-ui,sans-serif;margin:0;letter-spacing:-.02em}
+.w{max-width:1080px;margin:auto;padding:0 20px}
+nav{display:flex;justify-content:space-between;align-items:center;padding:18px 0}
+nav b{font-family:"Bricolage Grotesque",system-ui,sans-serif;font-size:20px}
+.btn{display:inline-block;background:var(--acc);color:var(--accink);border-radius:8px;padding:12px 20px;font-weight:700;text-decoration:none;border:2px solid var(--acc)}
+.btn.o{background:transparent;color:var(--ink);border-color:var(--ink)}
+.btn:focus-visible,a:focus-visible{outline:3px solid var(--ink);outline-offset:2px}
+.hero{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center;padding:36px 0 64px}
+@media(max-width:820px){.hero{grid-template-columns:1fr}}
+h1{font-size:clamp(36px,6vw,62px);font-weight:800;line-height:1.02}
+.hero p{color:var(--mut);font-size:19px;max-width:46ch;margin:18px 0 26px}
+.cta{display:flex;gap:12px;flex-wrap:wrap}
+.hero small{display:block;margin-top:12px;color:var(--mut);font-size:14px}
+.doc{background:#fff;color:#1d2327;border-radius:4px;padding:26px 24px;font-size:14px;border-top:6px solid var(--acc);box-shadow:0 18px 40px -18px rgba(0,0,0,.35);transform:rotate(1.2deg)}
+@media(max-width:820px){.doc{transform:none}}
+.doc .h{display:flex;justify-content:space-between;gap:12px;margin-bottom:14px}
+.doc h3{font-size:24px;font-weight:800}
+.doc small{color:#6b7378}
+.doc table{width:100%;border-collapse:collapse;margin:8px 0}
+.doc th{text-align:left;font-size:12px;color:#6b7378;border-bottom:2px solid #1d2327;padding:5px 2px}
+.doc td{padding:7px 2px;border-bottom:1px solid #e6e5e0}
+.r{text-align:right;white-space:nowrap}
+.tot{margin-left:auto;width:220px}.tot div{display:flex;justify-content:space-between;padding:3px 0}
+.tot .big{border-top:2px solid #1d2327;margin-top:5px;padding-top:7px;font-weight:800;font-size:17px}
+section{padding:56px 0;border-top:1px solid var(--line)}
+h2{font-size:clamp(26px,4vw,38px);font-weight:800;margin-bottom:22px}
+.feat{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
+@media(max-width:820px){.feat{grid-template-columns:1fr}}
+.feat h3{font-size:20px;margin-bottom:6px}.feat p{margin:0;color:var(--mut)}
+.price{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px;max-width:760px}
+@media(max-width:620px){.price{grid-template-columns:1fr}}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:26px}
+.card.pro{border:2px solid var(--acc)}
+.card h3{font-size:22px}.amt{font-family:"Bricolage Grotesque",system-ui,sans-serif;font-size:42px;font-weight:800;margin:8px 0 14px}
+.amt span{font-size:16px;font-weight:600;color:var(--mut)}
+.card ul{list-style:none;padding:0;margin:0 0 20px}.card li{padding:5px 0 5px 22px;position:relative}
+.card li::before{content:"✓";position:absolute;left:0;font-weight:800}
+details{border-bottom:1px solid var(--line);padding:14px 0}summary{font-weight:700;cursor:pointer}
+details p{color:var(--mut);margin:8px 0 0;max-width:62ch}
+label{display:block;font-size:14px;color:var(--mut);margin:12px 0 4px}input,textarea{width:100%;font:inherit;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:6px;padding:9px 10px}input:focus,textarea:focus{outline:3px solid var(--acc)}.hint{font-size:14px;color:var(--mut);margin:12px 0 0}
+footer{padding:36px 0 56px;color:var(--mut);font-size:14px;border-top:1px solid var(--line)}
+</style>
+</head>
+<body>
+<div class="w">
+<nav><b>Quotr</b><a class="btn o" href="#pris">Se pris</a></nav>
+
+<div class="hero">
+  <div>
+    <h1>Tilbud og faktura på to minutter.</h1>
+    <p>For håndverkere og små bedrifter som vil sende et ryddig tilbud fra mobilen, med riktig MVA, uten regnskapsprogram og uten opplæring.</p>
+    <div class="cta"><a class="btn" href="app.html">Prøv gratis</a><a class="btn o" href="#pris">Se pris</a></div>
+    <small>Ingen innlogging for å teste. Ingen kort.</small>
+  </div>
+  <div class="doc" aria-label="Eksempel på tilbud">
+    <div class="h"><div><h3>Tilbud 1001</h3><small>Gyldig i 30 dager</small></div><div class="r"><b>Hansen Maling AS</b><br><small>Org.nr 123 456 789 MVA</small></div></div>
+    <table><thead><tr><th>Beskrivelse</th><th class="r">Antall</th><th class="r">Sum</th></tr></thead><tbody>
+      <tr><td>Maling av stue, inkl. materialer</td><td class="r">1 stk</td><td class="r">8 500,00 kr</td></tr>
+      <tr><td>Maling av gang og trapp</td><td class="r">1 stk</td><td class="r">4 200,00 kr</td></tr>
+    </tbody></table>
+    <div class="tot"><div><span>Sum eks. MVA</span><span>12 700,00 kr</span></div><div><span>MVA 25 %</span><span>3 175,00 kr</span></div><div class="big"><span>Å betale</span><span>15 875,00 kr</span></div></div>
+  </div>
+</div>
+
+<section>
+  <h2>Det du trenger, og ikke mer</h2>
+  <div class="feat">
+    <div><h3>MVA som regner seg selv</h3><p>Velg 25, 15 eller 12 prosent. Oppgi prisene med eller uten MVA, så regner Quotr resten.</p></div>
+    <div><h3>Tilbud blir faktura med ett trykk</h3><p>Kunden sier ja? Gjør tilbudet om til en faktura med forfallsdato, kontonummer og KID (MOD10 eller MOD11).</p></div>
+    <div><h3>Din logo og dine vilkår</h3><p>Legg inn firmalogo, rabatt og egne vilkår. Last ned dokumentet og send det til kunden som PDF.</p></div>
+  </div>
+</section>
+
+<section id="pris">
+  <h2>Pris</h2>
+  <div class="price">
+    <div class="card"><h3>Gratis</h3><div class="amt">0 kr</div>
+      <ul><li>3 dokumenter i måneden</li><li>MVA-beregning</li><li>Last ned som fil</li></ul>
+      <a class="btn o" href="app.html">Prøv gratis</a></div>
+    <div class="card pro"><h3>Pro</h3><div class="amt">99 kr<span> / mnd</span></div>
+      <ul><li>Ubegrenset antall dokumenter</li><li>Logo og KID-nummer</li><li>Lagrede tilbud og fakturaer</li><li>Si opp når du vil</li></ul>
+      <a class="btn" href="#kontakt">Få Pro</a></div>
+  </div>
+</section>
+
+<section>
+  <h2>Spørsmål</h2>
+  <details><summary>Må jeg ha regnskapsprogram?</summary><p>Nei. Quotr er et enkelt verktøy for å lage tilbud og faktura. Du kan bruke det ved siden av regnskapsprogrammet du har, eller uten.</p></details>
+  <details><summary>Hvor lagres opplysningene mine?</summary><p>I nettleseren din, på din egen enhet. Bytter du telefon eller tømmer nettleseren, kan lagrede dokumenter forsvinne, så last ned viktige fakturaer.</p></details>
+  <details><summary>Er fakturaene gyldige?</summary><p>Malen er laget for vanlige norske tilbud og fakturaer med MVA. Du er selv ansvarlig for at innholdet stemmer, og bør spørre regnskapsføreren din hvis du er usikker.</p></details>
+  <details><summary>Hvordan fungerer KID?</summary><p>Du trenger en KID-avtale med banken din. Velg MOD10 eller MOD11 etter hva banken godtar, så lager Quotr nummeret ut fra fakturanummeret.</p></details>
+</section>
+
+<section id="kontakt">
+  <h2>Få Pro</h2>
+  <p style="max-width:56ch;color:var(--mut)">Fyll ut skjemaet, så åpnes e-postprogrammet ditt med meldingen ferdig skrevet. Trykk send der, så tar jeg kontakt og du betaler enkelt med Vipps.</p>
+  <div class="card" style="max-width:520px">
+    <label for="n">Navn</label><input id="n" autocomplete="name">
+    <label for="b">Type bedrift</label><input id="b" placeholder="For eksempel maler, frisør, kafé">
+    <label for="t">Telefon eller e-post</label><input id="t" autocomplete="tel">
+    <label for="m">Melding (valgfritt)</label><textarea id="m" rows="3"></textarea>
+    <a class="btn" id="send" href="mailto:ftahshahi@gmail.com" target="_blank" rel="noopener" style="margin-top:14px">Send forespørsel</a>
+    <p class="hint">Åpner ikke e-posten seg? Send en melding til <b>ftahshahi@gmail.com</b>.</p>
+  </div>
+</section>
+<footer>Quotr. Opplysningene du skriver inn lagres i din egen nettleser. <a href="vilkar.html" style="color:inherit">Vilkår og personvern</a></footer>
+</div>
+<script>
+(function(){var g=function(i){return document.getElementById(i)};
+function upd(){var body="Navn: "+g("n").value+"\nBedrift: "+g("b").value+"\nTelefon/e-post: "+g("t").value+"\n\n"+g("m").value;
+g("send").href="mailto:ftahshahi@gmail.com?subject="+encodeURIComponent("Ønsker Quotr Pro")+"&body="+encodeURIComponent(body)}
+["n","b","t","m"].forEach(function(i){g(i).addEventListener("input",upd)});upd()})();
+</script>
+</body>
+</html>
